@@ -21,8 +21,6 @@ export default function SnakeGame() {
   // 🔥 تفعيل الصوت بعد أي Click
   function enableAudio() {
     if (!audioEnabled) {
-      eatSound.play().catch(() => {});
-      gameOverSound.play().catch(() => {});
       setAudioEnabled(true);
     }
   }
