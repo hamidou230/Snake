@@ -91,3 +91,4 @@ export default function SnakeGame() {
     <div className="game-container" onClick={enableAudio}>
       <h1>🐍 Snake Retro</h1>
       <p>Score : {score}</p>
+      </div> )
