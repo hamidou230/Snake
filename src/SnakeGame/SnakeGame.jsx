@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./snake.css";
+import "./snake_temp.css";
 
 export default function SnakeGame() {
   const boardSize = 20;
