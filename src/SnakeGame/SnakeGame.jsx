@@ -18,7 +18,6 @@ export default function SnakeGame() {
   const eatSound = new Audio("/sounds/eat.mp3");
   const gameOverSound = new Audio("/sounds/gameover.mp3");
 
-  // 🔥 تفعيل الصوت بعد أول ضغطة
   function enableAudio() {
     if (!audioEnabled) {
       eatSound.play().catch(() => {});
@@ -40,7 +39,7 @@ export default function SnakeGame() {
   });
 
   function changeDirection(e) {
-    enableAudio(); // 🔥 هنا
+    enableAudio();
     if (e.key === "ArrowUp") setDirection([-1, 0]);
     if (e.key === "ArrowDown") setDirection([1, 0]);
     if (e.key === "ArrowLeft") setDirection([0, -1]);
@@ -67,7 +66,6 @@ export default function SnakeGame() {
         localStorage.setItem("bestScore", score);
         setBestScore(score);
       }
-
       return;
     }
 
@@ -87,8 +85,44 @@ export default function SnakeGame() {
     setSnake(newSnake);
   }
 
+
   return (
     <div className="game-container" onClick={enableAudio}>
       <h1>🐍 Snake Retro</h1>
       <p>Score : {score}</p>
-      </div> )
+
+      <div className="board">
+        {[...Array(boardSize)].map((_, row) =>
+          [...Array(boardSize)].map((_, col) => {
+            const isSnake = snake.some((s) => s[0] === row && s[1] === col);
+            const isFood = food[0] === row && food[1] === col;
+
+            return (
+              <div
+                key={`${row}-${col}`}
+                className={
+                  isSnake
+                    ? "cell snake"
+                    : isFood
+                    ? "cell food"
+                    : "cell"
+                }
+              ></div>
+            );
+          })
+        )}
+      </div>
+
+      <div className="controls">
+        <button onClick={() => setDirection([-1, 0])}>↑</button>
+
+        <div className="middle-controls">
+          <button onClick={() => setDirection([0, -1])}>←</button>
+          <button onClick={() => setDirection([0, 1])}>→</button>
+        </div>
+
+        <button onClick={() => setDirection([1, 0])}>↓</button>
+      </div>
+    </div>
+  );
+}
