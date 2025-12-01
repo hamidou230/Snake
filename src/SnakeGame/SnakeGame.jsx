@@ -18,6 +18,7 @@ export default function SnakeGame() {
   const eatSound = new Audio("/sounds/eat.mp3");
   const gameOverSound = new Audio("/sounds/gameover.mp3");
 
+  // 🔥 تفعيل الصوت بعد أي Click
   function enableAudio() {
     if (!audioEnabled) {
       eatSound.play().catch(() => {});
@@ -53,6 +54,7 @@ export default function SnakeGame() {
       newSnake[0][1] + direction[1],
     ];
 
+    // collision murs
     if (
       head[0] < 0 ||
       head[0] >= boardSize ||
@@ -71,6 +73,7 @@ export default function SnakeGame() {
 
     newSnake.unshift(head);
 
+    // manger nourriture
     if (head[0] === food[0] && head[1] === food[1]) {
       if (audioEnabled) eatSound.play();
       setScore(score + 1);
@@ -85,7 +88,23 @@ export default function SnakeGame() {
     setSnake(newSnake);
   }
 
+  // ⛔️ GAME OVER SCREEN
+  if (gameOver) {
+    return (
+      <div className="gameover-screen">
+        <h1 className="go-title">GAME OVER</h1>
 
+        <p className="go-score">Score : {score}</p>
+        <p className="go-best">Best Score : {bestScore}</p>
+
+        <button className="restart-btn" onClick={() => window.location.reload()}>
+          RESTART
+        </button>
+      </div>
+    );
+  }
+
+  // 🎮 GAME SCREEN
   return (
     <div className="game-container" onClick={enableAudio}>
       <h1>🐍 Snake Retro</h1>
@@ -101,11 +120,7 @@ export default function SnakeGame() {
               <div
                 key={`${row}-${col}`}
                 className={
-                  isSnake
-                    ? "cell snake"
-                    : isFood
-                    ? "cell food"
-                    : "cell"
+                  isSnake ? "cell snake" : isFood ? "cell food" : "cell"
                 }
               ></div>
             );
@@ -113,6 +128,7 @@ export default function SnakeGame() {
         )}
       </div>
 
+      {/* TOUCH CONTROLS */}
       <div className="controls">
         <button onClick={() => setDirection([-1, 0])}>↑</button>
 
