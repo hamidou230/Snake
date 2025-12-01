@@ -1,0 +1,71 @@
+.start-screen {
+  height: 100vh;
+  background: #0c140f;
+  color: #88ff88;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Press Start 2P", sans-serif;
+}
+
+.retro-title {
+  font-size: 26px;
+  margin-bottom: 25px;
+}
+
+.start-btn {
+  font-family: "Press Start 2P", sans-serif;
+  font-size: 12px;
+  background: #0a1a0a;
+  color: #88ff88;
+  border: 3px solid #88ff88;
+  padding: 14px 20px;
+  cursor: pointer;
+}
+/* 🔥 Scanlines CRT Effect */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.2) 0px,
+      rgba(0, 0, 0, 0.2) 2px,
+      rgba(0, 0, 0, 0) 3px
+    ),
+    repeating-linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.05) 0px,
+      rgba(0, 0, 0, 0.05) 1px,
+      rgba(0, 0, 0, 0) 2px
+    );
+  z-index: 9999;
+}
+.vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    transparent 50%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  z-index: 9998;
+}
+.gameboy-frame {
+  padding: 15px;
+  border: 4px solid #7fbf6a;
+  border-radius: 8px;
+  width: fit-content;
+  margin: auto;
+  background: #0e1c0d;
+  box-shadow: 0 0 20px #7fbf6a88, inset 0 0 10px #000000aa;
+}
+
